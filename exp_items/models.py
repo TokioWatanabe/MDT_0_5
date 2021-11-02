@@ -32,8 +32,10 @@ class Item(models.Model):
     status = models.CharField(max_length=15)
     remaining = models.FloatField()
     unit = models.CharField(max_length=8)
+    created_date = models.DateTimeField(blank=True, null=True)
 
     def store(self):
+        self.created_date = timezone.datetime.now()
         self.save()
 
     def __str__(self):
